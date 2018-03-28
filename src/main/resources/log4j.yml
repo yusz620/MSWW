@@ -1,0 +1,27 @@
+log4j:
+  appender:
+    stdout:
+      layout:
+        ConversionPattern: '%d %p [%c] - <%m>%n'
+  logger:
+    com:
+      opensymphony: ERROR
+    freemarker: ERROR
+    httpclient: ERROR
+    java:
+      sql:
+        Connection: DEBUG
+        PreparedStatement: DEBUG
+        ResultSet: DEBUG
+        Statement: DEBUG
+    org:
+      apache:
+        axiom: ERROR
+        axis2: ERROR
+        commons: ERROR
+        xml: ERROR
+      hibernate: ERROR
+      jbpm: ERROR
+      mybatis: DEBUG
+      springframework: ERROR
+  rootLogger: DEBUG, stdout

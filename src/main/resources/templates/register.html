@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>msww</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="bootstrap-4.0.0/css/bootstrap.min.css"  rel="stylesheet">
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="bootstrap-4.0.0/js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/axios.js"></script>
+  </head>
+<!-- <body  background="../static/img/background/login.background.jpg" > -->
+<body>
+	<div align="center"> 
+		<form role="form" th:action="@{/login}" th:method="post" th:object="${userBean}" >
+			<div class="form-group">
+				<div class="table-responsive" >
+				  <table class="table" >
+					<tr>
+						<td width="25%" />
+						<td width="25%" ><font color="red">*</font>User Name  </td>
+						<td width="25%">
+				   			<input type="text" class="form-control" required="required" name="userName" onchange="checkUserName();"/>
+				   		</td>	
+				   		<td width="25%" />
+				   	</tr>
+				   	<tr>	
+				   		<td width="25%" />
+				   		<td width="25%" ><font color="red">*</font>Password </td>	
+				   		<td width="25%" >
+				   			<input type="password" class="form-control" required="required" name="password" id="password" />
+				   		</td>	
+				   		<td width="25%" />
+				   	</tr>
+				   	<tr>
+				   		<td width="25%" />
+				   		<td width="25%" ><font color="red">*</font>Confirm Password </td>	
+				   		<td width="25%">
+				   			<input type="password" class="form-control" required="required" name="repassword" id="repassword" onchange="validatePassword();"/>
+				   		</td>
+				   		<td width="25%" />
+				   	</tr>	
+				   	<tr>	
+				   		<td width="25%" />
+				   		<td >
+					   		<button class="btn btn-default" type="submit" >submit</button>
+					   	</td>
+					   	<td width="25%"/>
+					   	<td width="25%" />
+					</tr> 	   
+					</table>
+				</div>
+			</div>		   
+		</form>
+	</div>
+	<script>
+	function checkUserName(){
+		axios.get('/userName')
+		  .then(function (response) {
+			  debugger;
+		    console.log(response);
+		  })
+		  .catch(function (error) {
+		    console.log(error);
+		  });
+	}
+	function checkPassword(){
+		axios.get('/password')
+		  .then(function (response) {
+		    console.log(response);
+		  })
+		  .catch(function (error) {
+		    console.log(error);
+		  });
+	}
+	function validatePassword(){
+		debugger;
+		var password = document.getElementById("password").value;
+		var repassword = document.getElementById("repassword").value;
+		console.log("password-->" + password);
+		console.log("repassword-->" + repassword);
+		if(password !=null && repassword !=null && password !=repassword){
+			alert("password is not validate!");
+		}
+	}
+	</script>
+	</body>
+</html>
