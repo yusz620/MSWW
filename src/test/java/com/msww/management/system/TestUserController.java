@@ -10,7 +10,10 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -20,6 +23,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.msww.ms.user.model.SysUser;
 import com.msww.ms.user.service.UserService;
+import com.msww.ms.user.web.WebConfig;
 import com.msww.ms.utils.EncodeUtils;
 
 import junit.framework.Assert;
@@ -28,6 +32,8 @@ import net.minidev.json.JSONObject;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class TestUserController extends MswwApplicationTests {
+    Logger logger = LoggerFactory.getLogger(TestUserController.class);
+    AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(WebConfig.class);
     // @Autowired
     private UserService userService;
     // private UserRepository userRepository;
@@ -37,6 +43,8 @@ public class TestUserController extends MswwApplicationTests {
 
     // @Test
     public void testGetAllUsers() {
+        logger.debug(context.getApplicationName());
+        logger.debug(context.getBean(WebConfig.class).toString());
         Iterable<SysUser> users = userService.getAllUsers();
         Assert.assertNotNull(users);
     }
