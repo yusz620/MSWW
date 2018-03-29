@@ -13,7 +13,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new UserLoginHandlerInterceptor()).addPathPatterns("/**").excludePathPatterns("/login").excludePathPatterns("/")
                 .excludePathPatterns("/static/**").excludePathPatterns("/register").excludePathPatterns("/userName").excludePathPatterns("/error/**")
-                .excludePathPatterns("/ajaxerror").excludePathPatterns("/getAjaxerror").excludePathPatterns("/bootstrap-4.0.0/**");
+                .excludePathPatterns("/ajaxerror").excludePathPatterns("/getAjaxerror").excludePathPatterns("/bootstrap-4.0.0/**")
+                .excludePathPatterns("/js/**");
     }
 
     @Override
